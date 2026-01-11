@@ -80,8 +80,8 @@
 CREATE OR REPLACE FUNCTION get_proposal_public_metadata(p_id UUID)
 RETURNS TABLE(
   id UUID,
-  client_name VARCHAR(255),
-  project_title VARCHAR(255),
+  client_name TEXT,
+  project_title TEXT,
   status VARCHAR(50),
   expires_at TIMESTAMPTZ
 ) AS $$

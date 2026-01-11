@@ -27,7 +27,12 @@ export const ProposalHero = ({ clientName, title, intro }) => (
         </motion.div>
 
         <motion.div variants={item}>
-            <div className="max-w-2xl text-xl text-white/50 prose prose-invert prose-strong:text-white prose-strong:font-semibold">
+            <div className="max-w-2xl text-xl text-white/70 prose prose-invert prose-lg 
+                prose-p:my-4 prose-p:leading-relaxed
+                prose-strong:text-white prose-strong:font-semibold 
+                prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-4 prose-ol:space-y-2
+                prose-ul:list-disc prose-ul:pl-6 prose-ul:my-4 prose-ul:space-y-2
+                prose-li:text-white/70 prose-li:leading-relaxed">
                 <ReactMarkdown>{intro}</ReactMarkdown>
             </div>
         </motion.div>

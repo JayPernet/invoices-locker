@@ -17,7 +17,12 @@ export const ProposalSection = ({ title, content, bullets }) => (
             </Heading>
         </div>
 
-        <div className="text-lg prose prose-invert prose-strong:text-white prose-strong:font-semibold">
+        <div className="text-lg prose prose-invert 
+            prose-p:my-3 prose-p:leading-relaxed
+            prose-strong:text-white prose-strong:font-semibold
+            prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-3 prose-ol:space-y-2
+            prose-ul:list-disc prose-ul:pl-6 prose-ul:my-3 prose-ul:space-y-2
+            prose-li:text-white/80 prose-li:leading-relaxed">
             <ReactMarkdown>{content}</ReactMarkdown>
         </div>
 
