@@ -20,10 +20,10 @@ export const ProposalView = ({ data, isLocked, onAccept }) => {
             variants={container}
             initial="hidden"
             animate="show"
-            className={`relative w-full h-full overflow-hidden transition-all duration-1000 ${isLocked ? 'blur-[60px] opacity-30 select-none pointer-events-none scale-[0.98]' : 'blur-0 opacity-100'
+            className={`relative w-full h-full overflow-y-auto scrollbar-hide transition-all duration-1000 ${isLocked ? 'blur-[60px] opacity-30 select-none pointer-events-none scale-[0.98]' : 'blur-0 opacity-100'
                 }`}
         >
-            <div className="max-w-[1280px] mx-auto px-[clamp(24px,6vw,64px)] py-[clamp(40px,6vw,80px)] h-full overflow-y-auto scrollbar-hide">
+            <div className="max-w-[1280px] mx-auto px-[clamp(24px,6vw,64px)] py-[clamp(40px,6vw,80px)]">
 
                 <ProposalHero
                     clientName={data.client_name}
