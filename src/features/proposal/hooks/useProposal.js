@@ -47,19 +47,19 @@ export function useProposal(proposalId) {
             if (code === '000000') {
                 const demoData = {
                     id: 'demo-uuid',
-                    client_name: 'Dr. Tacio Schmitz',
-                    project_title: 'Expansão Visionária IA',
+                    client_name: 'Dr. Pinduca',
+                    project_title: 'Protocolo de Detecção de Curiosos',
                     status: 'ONLINE',
                     content_json: {
-                        intro: 'Soluções avançadas em IA para otimização de fluxos clínicos e expansão de marca.',
+                        intro: 'Ah, que bonitinho, você quebrou o bypass que era existente no código, você é bem inteligente hein? 😉',
                         sections: [
                             {
-                                title: 'Contexto e Estratégia',
-                                content: 'Análise profunda da infraestrutura atual e mapeamento de gargalos em atendimento e pós-venda.',
-                                bullets: ['IA para Triagem', 'Personalização de Experiência', 'Dashboard de Métricas']
+                                title: 'Análise de Segurança Interna',
+                                content: 'Identificamos um acesso via código mestre legado. Parabéns pela persistência, mas os dados reais continuam protegidos por criptografia de nível nível StarIAup.',
+                                bullets: ['Acesso via 000000 detectado', 'Geração de proposta fake concluída', 'Nível de curiosidade: Máximo']
                             }
                         ],
-                        investment: { value: 'R$ 48.000,00', details: 'Setup + 12 meses de manutenção inclusos.' }
+                        investment: { value: 'R$ 0,00', details: 'A inteligência não tem preço, mas a curiosidade custou seu tempo!' }
                     }
                 };
                 setProposal(demoData);
