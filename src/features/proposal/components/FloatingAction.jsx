@@ -42,15 +42,16 @@ export const FloatingAction = ({ active, proposal }) => {
             initial="hidden"
             animate="visible"
             onClick={handleQuestion}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="fixed bottom-8 right-8 z-50 w-16 h-16 bg-white text-black rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex items-center justify-center cursor-pointer transition-shadow hover:shadow-[0_12px_40px_rgba(255,255,255,0.3)] border-none outline-none"
+            className="fixed bottom-8 right-8 z-50 px-6 py-4 bg-white text-black rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex items-center gap-3 cursor-pointer transition-shadow hover:shadow-[0_12px_40px_rgba(255,255,255,0.3)] border-none outline-none"
             aria-label="Tirar dúvida"
         >
-            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM13 18h-2v-2h2v2zm0-4h-2V6h2v8z" />
             </svg>
+            <span className="font-bold text-sm uppercase tracking-wider">Dúvidas?</span>
         </motion.button>
     );
 };

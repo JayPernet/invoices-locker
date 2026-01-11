@@ -14,6 +14,19 @@ export const InvestmentPanel = ({ investment, status, onAccept }) => (
         <motion.div variants={item}>
             <Card glow className="p-8">
                 <Text variant="mono" className="mb-4">INVESTIMENTO ESTIMADO</Text>
+
+                {/* Itemized Budget */}
+                {investment?.items && investment.items.length > 0 && (
+                    <div className="mb-6 space-y-2 pb-4 border-b border-white/10">
+                        {investment.items.map((budgetItem, idx) => (
+                            <div key={idx} className="flex justify-between items-center">
+                                <Text variant="small" className="text-white/60">{budgetItem.description}</Text>
+                                <Text variant="small" className="text-primary font-mono">{budgetItem.value}</Text>
+                            </div>
+                        ))}
+                    </div>
+                )}
+
                 <Heading level="h3" className="text-4xl mb-2">
                     {investment?.value || "Sob Consulta"}
                 </Heading>

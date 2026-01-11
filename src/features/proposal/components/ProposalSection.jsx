@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heading, Text } from '../../../components/ui/Typography';
+import ReactMarkdown from 'react-markdown';
 
 const item = {
     hidden: { opacity: 0, y: 20 },
@@ -16,9 +17,9 @@ export const ProposalSection = ({ title, content, bullets }) => (
             </Heading>
         </div>
 
-        <Text className="text-lg">
-            {content}
-        </Text>
+        <div className="text-lg prose prose-invert prose-strong:text-white prose-strong:font-semibold">
+            <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
 
         {bullets && (
             <ul className="space-y-4 pt-4">

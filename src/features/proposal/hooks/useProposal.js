@@ -72,12 +72,6 @@ export function useProposal(proposalId) {
             const data = await fetchProposalByCode(code);
 
             if (data) {
-                // Verify ID matches (security check)
-                if (proposalId && data.id !== proposalId) {
-                    setError('Código inválido para esta proposta.');
-                    return false;
-                }
-
                 setProposal(data);
                 setIsLocked(false);
                 trackEvent(data.id, 'unlock');

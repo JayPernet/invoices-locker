@@ -16,7 +16,8 @@ export const ProposalForm = ({ onSubmit, isLoading, initialData, onCancel }) => 
         investment_currency: 'R$',
         investment_details: '',
         expires_at: '',
-        sections: [{ title: '', content: '', bullets: '' }]
+        sections: [{ title: '', content: '', bullets: '' }],
+        budget_items: [] // New: itemized budget
     });
 
     // Load initial data for edit mode
@@ -36,7 +37,8 @@ export const ProposalForm = ({ onSubmit, isLoading, initialData, onCancel }) => 
                 investment_currency: currency,
                 investment_details: initialData.content_json?.investment?.details || '',
                 expires_at: initialData.expires_at ? new Date(initialData.expires_at).toISOString().slice(0, 16) : '',
-                sections: initialData.content_json?.sections || [{ title: '', content: '', bullets: '' }]
+                sections: initialData.content_json?.sections || [{ title: '', content: '', bullets: '' }],
+                budget_items: initialData.content_json?.investment?.items || []
             });
         }
     }, [initialData]);
@@ -63,6 +65,26 @@ export const ProposalForm = ({ onSubmit, isLoading, initialData, onCancel }) => 
         setFormData({ ...formData, sections: newSections });
     };
 
+    const handleAddBudgetItem = () => {
+        setFormData({
+            ...formData,
+            budget_items: [...formData.budget_items, { description: '', value: '' }]
+        });
+    };
+
+    const handleRemoveBudgetItem = (index) => {
+        setFormData({
+            ...formData,
+            budget_items: formData.budget_items.filter((_, i) => i !== index)
+        });
+    };
+
+    const handleBudgetItemChange = (index, field, value) => {
+        const newItems = [...formData.budget_items];
+        newItems[index][field] = value;
+        setFormData({ ...formData, budget_items: newItems });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -71,15 +93,16 @@ export const ProposalForm = ({ onSubmit, isLoading, initialData, onCancel }) => 
             ? `${formData.investment_currency} ${formData.investment_value}`
             : '';
 
-        // Transform bullets from comma-separated to array
+        // Transform bullets from semicolon-separated to array
         const processedData = {
             ...formData,
             investment_value: formattedValue,
             expires_at: formData.expires_at || null,
             sections: formData.sections.map(section => ({
                 ...section,
-                bullets: section.bullets ? section.bullets.split(',').map(b => b.trim()).filter(Boolean) : []
-            }))
+                bullets: section.bullets ? section.bullets.split(';').map(b => b.trim()).filter(Boolean) : []
+            })),
+            budget_items: formData.budget_items.filter(item => item.description && item.value) // Only include filled items
         };
 
         const result = await onSubmit(processedData, initialData?.id);
@@ -268,12 +291,12 @@ export const ProposalForm = ({ onSubmit, isLoading, initialData, onCancel }) => 
                                 </div>
 
                                 <div>
-                                    <Label htmlFor={`section_bullets_${index}`}>Bullets (separados por vírgula)</Label>
+                                    <Label htmlFor={`section_bullets_${index}`}>Bullets (separados por ponto e vírgula)</Label>
                                     <Input
                                         id={`section_bullets_${index}`}
                                         value={section.bullets}
                                         onChange={(e) => handleSectionChange(index, 'bullets', e.target.value)}
-                                        placeholder="Item 1, Item 2, Item 3"
+                                        placeholder="Item 1; Item 2; Item 3"
                                         disabled={isLoading}
                                     />
                                 </div>
@@ -325,6 +348,57 @@ export const ProposalForm = ({ onSubmit, isLoading, initialData, onCancel }) => 
                             disabled={isLoading}
                         />
                     </div>
+                </div>
+
+                {/* Itemized Budget Section */}
+                <div className="mt-8">
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <Text variant="mono" className="text-primary text-sm">ITENS DO ORÇAMENTO (OPCIONAL)</Text>
+                            <Text variant="small" className="text-white/40 mt-1">
+                                Liste os itens individuais. O valor total acima pode ser diferente (ancoragem de preço).
+                            </Text>
+                        </div>
+                        <Button type="button" variant="ghost" onClick={handleAddBudgetItem} disabled={isLoading}>
+                            + Adicionar Item
+                        </Button>
+                    </div>
+
+                    {formData.budget_items.length > 0 && (
+                        <div className="space-y-3">
+                            {formData.budget_items.map((item, index) => (
+                                <div key={index} className="grid grid-cols-12 gap-3 items-end">
+                                    <div className="col-span-7">
+                                        <Input
+                                            value={item.description}
+                                            onChange={(e) => handleBudgetItemChange(index, 'description', e.target.value)}
+                                            placeholder="Descrição do item"
+                                            disabled={isLoading}
+                                        />
+                                    </div>
+                                    <div className="col-span-4">
+                                        <Input
+                                            value={item.value}
+                                            onChange={(e) => handleBudgetItemChange(index, 'value', e.target.value)}
+                                            placeholder="R$ 1.000"
+                                            disabled={isLoading}
+                                        />
+                                    </div>
+                                    <div className="col-span-1">
+                                        <Button
+                                            type="button"
+                                            variant="destructive"
+                                            onClick={() => handleRemoveBudgetItem(index)}
+                                            disabled={isLoading}
+                                            className="w-full py-2"
+                                        >
+                                            ×
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </Card>
 

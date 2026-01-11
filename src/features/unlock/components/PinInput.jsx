@@ -66,7 +66,7 @@ export const PinInput = ({ length = 6, onComplete, disabled, error, onPinChange 
             </div>
 
             {error && (
-                <p className="absolute -bottom-8 left-0 right-0 text-center text-xs text-red-400 font-mono uppercase tracking-widest animate-fade-in">
+                <p className="mt-6 text-center text-xs text-red-400 font-mono uppercase tracking-widest animate-fade-in">
                     {error}
                 </p>
             )}

@@ -5,6 +5,7 @@ import { AdminLayout } from './components/AdminLayout';
 import { ProposalForm } from './components/ProposalForm';
 import { ProposalList } from './components/ProposalList';
 import { DeleteConfirmModal } from './components/DeleteConfirmModal';
+import { PinModal } from './components/PinModal';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Button } from '../../components/ui/Button';
 import { Heading } from '../../components/ui/Typography';
@@ -28,6 +29,7 @@ export const AdminPage = () => {
     const [proposals, setProposals] = useState([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [loginLoading, setLoginLoading] = useState(false);
+    const [pinModal, setPinModal] = useState({ isOpen: false, proposal: null });
     const [deleteModal, setDeleteModal] = useState({ isOpen: false, proposal: null });
 
     // Load proposals on mount
@@ -99,6 +101,22 @@ export const AdminPage = () => {
         navigator.clipboard.writeText(link);
     };
 
+    const handleViewPin = (proposal) => {
+        setPinModal({ isOpen: true, proposal });
+    };
+
+    const handleDuplicate = (proposal) => {
+        // Clone proposal data without ID and timestamps
+        const duplicatedData = {
+            ...proposal,
+            id: undefined,
+            created_at: undefined,
+            access_code: undefined
+        };
+        setEditingProposal(duplicatedData);
+        setView('form');
+    };
+
     const handleNewProposal = () => {
         setEditingProposal(null);
         setView('form');
@@ -159,6 +177,8 @@ export const AdminPage = () => {
                         onEdit={handleEdit}
                         onDelete={handleDelete}
                         onCopyLink={handleCopyLink}
+                        onDuplicate={handleDuplicate}
+                        onViewPin={handleViewPin}
                         isLoading={loading}
                     />
                 ) : (
@@ -175,6 +195,13 @@ export const AdminPage = () => {
                         {error}
                     </div>
                 )}
+
+                {/* PIN Modal */}
+                <PinModal
+                    isOpen={pinModal.isOpen}
+                    proposal={pinModal.proposal}
+                    onClose={() => setPinModal({ isOpen: false, proposal: null })}
+                />
 
                 {/* Delete Confirmation Modal */}
                 <DeleteConfirmModal

@@ -22,7 +22,7 @@ const getStatusBadge = (proposal) => {
     return <span className="px-2 py-1 text-xs uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 rounded">Online</span>;
 };
 
-export const ProposalList = ({ proposals, onEdit, onDelete, onCopyLink, isLoading }) => {
+export const ProposalList = ({ proposals, onEdit, onDelete, onCopyLink, onDuplicate, onViewPin, isLoading }) => {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center py-12">
@@ -101,6 +101,26 @@ export const ProposalList = ({ proposals, onEdit, onDelete, onCopyLink, isLoadin
                                 >
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    onClick={() => onViewPin(proposal)}
+                                    className="text-xs py-2 px-3"
+                                    title="Ver PIN"
+                                >
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                                    </svg>
+                                </Button>
+                                <Button
+                                    variant="ghost"
+                                    onClick={() => onDuplicate(proposal)}
+                                    className="text-xs py-2 px-3"
+                                    title="Duplicar"
+                                >
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
                                     </svg>
                                 </Button>
                                 <Button

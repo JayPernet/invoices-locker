@@ -80,7 +80,8 @@ export const useAdmin = () => {
                         sections: proposalData.sections || [],
                         investment: {
                             value: proposalData.investment_value,
-                            details: proposalData.investment_details || ''
+                            details: proposalData.investment_details || '',
+                            items: proposalData.budget_items || []
                         }
                     },
                     status: 'ONLINE',
@@ -110,7 +111,8 @@ export const useAdmin = () => {
                     sections: proposalData.sections || [],
                     investment: {
                         value: proposalData.investment_value,
-                        details: proposalData.investment_details || ''
+                        details: proposalData.investment_details || '',
+                        items: proposalData.budget_items || []
                     }
                 },
                 expires_at: proposalData.expires_at || null

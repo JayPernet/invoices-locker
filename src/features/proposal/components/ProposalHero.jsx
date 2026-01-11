@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heading, Text } from '../../../components/ui/Typography';
+import ReactMarkdown from 'react-markdown';
 
 const item = {
     hidden: { opacity: 0, y: 20 },
@@ -26,9 +27,9 @@ export const ProposalHero = ({ clientName, title, intro }) => (
         </motion.div>
 
         <motion.div variants={item}>
-            <Text className="max-w-2xl text-xl text-white/50">
-                {intro}
-            </Text>
+            <div className="max-w-2xl text-xl text-white/50 prose prose-invert prose-strong:text-white prose-strong:font-semibold">
+                <ReactMarkdown>{intro}</ReactMarkdown>
+            </div>
         </motion.div>
     </header>
 );
