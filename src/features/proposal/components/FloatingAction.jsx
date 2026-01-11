@@ -29,7 +29,7 @@ export const FloatingAction = ({ active, proposal }) => {
         }
 
         // Open WhatsApp
-        const phone = '5547988109155';
+        const phone = '5571993623891';
         const message = encodeURIComponent(
             `Olá! Tenho dúvidas sobre a proposta para *${proposal.client_name}*.`
         );

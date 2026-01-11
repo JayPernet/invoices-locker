@@ -47,7 +47,7 @@ export const ProposalPage = () => {
             });
 
             // Open WhatsApp
-            const phone = '5547988109155';
+            const phone = '5571993623891';
             const message = encodeURIComponent(
                 `Olá! Quero *aceitar a proposta* para *${proposal?.client_name}*.`
             );
