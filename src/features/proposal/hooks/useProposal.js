@@ -49,13 +49,13 @@ export function useProposal(proposalId) {
                     id: 'demo-uuid',
                     client_name: 'Dr. Pinduca',
                     project_title: 'Protocolo de Detecção de Curiosos',
-                    status: 'ONLINE',
+                    status: 'TROLLED',
                     content_json: {
                         intro: 'Ah, que bonitinho, você quebrou o bypass que era existente no código, você é bem inteligente hein? 😉',
                         sections: [
                             {
                                 title: 'Análise de Segurança Interna',
-                                content: 'Identificamos um acesso via código mestre legado. Parabéns pela persistência, mas os dados reais continuam protegidos por criptografia de nível nível StarIAup.',
+                                content: 'Identificamos um acesso via código legado. Parabéns pela persistência, mas os dados reais continuam protegidos.',
                                 bullets: ['Acesso via 000000 detectado', 'Geração de proposta fake concluída', 'Nível de curiosidade: Máximo']
                             }
                         ],
