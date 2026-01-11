@@ -1,0 +1,17 @@
+# Remote rules matching existing structure
+crm-web/node_modules/
+crm-web/.next/
+crm-web/.env*
+
+# User specified exclusions
+agentes/
+gitignore/
+
+# Standard exclusions
+node_modules/
+dist/
+.DS_Store
+.env
+.env.local
+.env.*
+!.env.example

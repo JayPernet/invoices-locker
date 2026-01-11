@@ -1,0 +1,247 @@
+{
+    "designPrinciples": {
+        "overall": "Cyber-Precision Luxury. The design abandons generic SaaS aesthetics for a dark, high-tech obsidian base with electric emerald accents, evoking surgical precision and authority in AI.",
+        "keywords": [
+            "Precision",
+            "Obsidian",
+            "Electric Emerald",
+            "Surgical",
+            "High-Contrast",
+            "Technical"
+        ],
+        "avoid": [
+            "Purple-to-blue gradients",
+            "Rounded/Bubbly shapes",
+            "Generic Inter font usage",
+            "Soft corporate shadows"
+        ]
+    },
+    "colorPalette": {
+        "primary": {
+            "_note": "Electric Emerald - The signal of precision.",
+            "base": "#00FF94",
+            "light": "#66FFBE",
+            "dark": "#00B368"
+        },
+        "neutral": {
+            "_note": "Obsidian depth system.",
+            "white": "#FAFAFA",
+            "lightest": "#1A1A1F",
+            "light": "#24242B",
+            "medium": "#8E8E93",
+            "dark": "#E5E5E7",
+            "black": "#0D0D0F"
+        },
+        "accent": {
+            "_note": "High-frequency support colors.",
+            "accent1": "#00D1FF",
+            "accent2": "#FF2D55",
+            "accent3": "#FFFFFF"
+        },
+        "usage": {
+            "backgrounds": [
+                "black for main proposal sections",
+                "lightest for card backgrounds and alternating content",
+                "primary (10% opacity) for radial glow highlights"
+            ],
+            "text": {
+                "headings": "white",
+                "body": "dark (85% opacity)",
+                "accent": "primary"
+            },
+            "buttons": {
+                "primary": "primary background (#00FF94) with black text (#0D0D0F)",
+                "secondary": "transparent with white border (20% opacity) and white text"
+            }
+        }
+    },
+    "typography": {
+        "fontFamilies": {
+            "headings": {
+                "family": "Clash Display",
+                "weight": "600",
+                "style": "Modern geometric with wide apertures"
+            },
+            "body": {
+                "family": "Satoshi",
+                "weight": "400 for body, 700 for emphasis"
+            }
+        },
+        "scale": {
+            "hero-h1": {
+                "size": "clamp(2.5rem, 6vw, 4.5rem)",
+                "lineHeight": "1.05",
+                "letterSpacing": "-0.04em"
+            },
+            "h2": {
+                "size": "clamp(2rem, 4vw, 3rem)",
+                "lineHeight": "1.1",
+                "letterSpacing": "-0.02em"
+            },
+            "h3": {
+                "size": "1.5rem",
+                "lineHeight": "1.3",
+                "weight": "600"
+            },
+            "body": {
+                "size": "1.125rem",
+                "lineHeight": "1.6"
+            },
+            "small": {
+                "size": "0.875rem",
+                "lineHeight": "1.5"
+            }
+        },
+        "emphasis": {
+            "technique": "Monospace typography for technical labels + primary accent color",
+            "example": "Mecanismo de IA: [REVOLUCIONÁRIO]"
+        }
+    },
+    "spacing": {
+        "philosophy": "Precision-based, asymmetric grid with tight gutters and generous vertical breathing room.",
+        "sectionPadding": {
+            "vertical": "clamp(80px, 10vw, 160px)",
+            "horizontal": "clamp(24px, 6vw, 64px)"
+        },
+        "containerMaxWidth": "1280px",
+        "componentSpacing": {
+            "betweenSections": "0",
+            "betweenHeadingAndContent": "48px",
+            "betweenCards": "24px",
+            "insideCards": "40px"
+        },
+        "grid": {
+            "columns": "12-column",
+            "gutter": "32px"
+        }
+    },
+    "components": {
+        "buttons": {
+            "primary": {
+                "background": "#00FF94",
+                "text": "#0D0D0F",
+                "borderRadius": "4px",
+                "padding": "18px 36px",
+                "fontSize": "1rem",
+                "fontWeight": "700",
+                "hover": {
+                    "background": "#66FFBE",
+                    "transform": "scale(1.02)",
+                    "shadow": "0 0 20px rgba(0, 255, 148, 0.4)"
+                },
+                "transition": "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)"
+            },
+            "secondary": {
+                "background": "transparent",
+                "text": "#FFFFFF",
+                "border": "1px solid rgba(255, 255, 255, 0.2)",
+                "borderRadius": "4px"
+            }
+        },
+        "cards": {
+            "default": {
+                "background": "rgba(26, 26, 31, 0.8)",
+                "borderRadius": "8px",
+                "padding": "40px",
+                "shadow": "none",
+                "border": "1px solid rgba(255, 255, 255, 0.05)"
+            },
+            "elevated": {
+                "background": "#24242B",
+                "borderRadius": "8px",
+                "shadow": "0 20px 40px rgba(0,0,0,0.4)"
+            },
+            "subtle": {
+                "background": "transparent",
+                "borderRadius": "8px",
+                "shadow": "none",
+                "border": "1px solid rgba(255, 255, 255, 0.03)"
+            },
+            "hover": {
+                "transform": "translateY(-8px)",
+                "shadow": "0 10px 30px rgba(0,0,0,0.5)",
+                "transition": "all 0.3s ease"
+            }
+        },
+        "icons": {
+            "style": "Phosphor Icons, Duotone style, stroke focused",
+            "size": {
+                "small": "20px",
+                "default": "28px",
+                "large": "36px",
+                "feature": "48px"
+            },
+            "container": {
+                "background": "rgba(0, 255, 148, 0.1)",
+                "borderRadius": "4px",
+                "padding": "12px"
+            }
+        },
+        "badges": {
+            "style": {
+                "background": "rgba(0, 255, 148, 0.1)",
+                "text": "#00FF94",
+                "borderRadius": "2px",
+                "padding": "4px 8px",
+                "fontSize": "0.75rem",
+                "fontWeight": "700",
+                "textTransform": "uppercase",
+                "letterSpacing": "0.1em"
+            }
+        },
+        "inputs": {
+            "borderRadius": "4px",
+            "border": "1px solid rgba(255, 255, 255, 0.1)",
+            "padding": "16px",
+            "focusBorder": "#00FF94",
+            "focusShadow": "0 0 0 2px rgba(0, 255, 148, 0.2)"
+        }
+    },
+    "imagery": {
+        "style": "Technical renders, LIDAR-style dots, and dark UI screenshots with high contrast.",
+        "treatment": {
+            "photos": "Low-exposure, cool temperature, monochrome leaning",
+            "illustrations": "Wireframes and data-flow nodes",
+            "backgrounds": "Grainy gradients with subtle scanline textures"
+        },
+        "heroImage": {
+            "composition": "Floating 3D technical interface elements centered",
+            "elements": "Data nodes, neural meshes, technical overlays"
+        }
+    },
+    "backgrounds": {
+        "patterns": {
+            "texturedGradient": "Noise texture 4% opacity with grid lines (50px apart)",
+            "meshGradient": "Subtle dark navy and black blend with emerald focal points"
+        },
+        "sections": {
+            "alternating": "All black obsidian with subtle border separators",
+            "emphasis": "Radial glow of primary emerald at 5% opacity",
+            "special": "Dark technical grid pattern"
+        }
+    },
+    "animations": {
+        "philosophy": "Sharp, fast, and mechanical. Movements feel like a system booting or a laser cutting.",
+        "types": {
+            "fadeInUp": {
+                "initial": "opacity: 0, scale: 0.98, y: 10px",
+                "animate": "opacity: 1, scale: 1, y: 0",
+                "duration": "0.4s",
+                "easing": "cubic-bezier(0.2, 1, 0.3, 1)"
+            },
+            "hoverLift": {
+                "transform": "translateY(-4px)",
+                "duration": "0.2s"
+            },
+            "stagger": {
+                "delayBetween": "0.05s",
+                "use": "Feature cards and grid items"
+            }
+        },
+        "microInteractions": {
+            "buttons": "Brighter emerald color shift + subtle glow",
+            "cards": "Border intensity increase",
+            "links": "Underline growth with technical ease"
+        }
+    }
+}

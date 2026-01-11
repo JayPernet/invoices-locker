@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply overflow-hidden;
+    }
+
+    body {
+        @apply bg-obsidian text-white font-body overflow-hidden;
+        background-attachment: fixed;
+        height: 100vh;
+        width: 100vw;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-heading tracking-tight;
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply bg-obsidian-light/80 backdrop-blur-xl border border-white/5 rounded-lg shadow-2xl;
+    }
+
+    .emerald-glow {
+        @apply shadow-emerald-glow hover:shadow-emerald-glow-strong transition-all duration-300;
+    }
+
+    .text-gradient-emerald {
+        @apply bg-gradient-to-br from-white to-primary bg-clip-text text-transparent;
+    }
+
+    /* Hide scrollbar but maintain scroll functionality */
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        /* IE and Edge */
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari and Opera */
+    }
+}
+
+/* Texture Overlays */
+.grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.04;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    filter: contrast(150%) brightness(100%);
+}
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    background-size: 100% 4px;
+    background-image: linear-gradient(rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.1) 50%);
+}
+
+/* Custom Animations */
+@keyframes reveal-focus {
+    from {
+        filter: blur(80px);
+        opacity: 0.2;
+        transform: scale(0.98);
+    }
+
+    to {
+        filter: blur(0);
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-reveal {
+    animation: reveal-focus 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+}
