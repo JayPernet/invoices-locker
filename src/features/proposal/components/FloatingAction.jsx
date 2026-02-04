@@ -43,15 +43,10 @@ export const FloatingAction = ({ active, proposal }) => {
             initial="hidden"
             animate="visible"
             onClick={handleQuestion}
-            onTouchEnd={(e) => {
-                e.preventDefault();
-                handleQuestion();
-            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="fixed bottom-8 right-8 z-50 px-6 py-4 bg-white text-black rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex items-center gap-3 cursor-pointer transition-shadow hover:shadow-[0_12px_40px_rgba(255,255,255,0.3)] border-none outline-none touch-manipulation"
-            style={{ WebkitTapHighlightColor: 'transparent' }}
+            className="fixed bottom-8 right-8 z-50 px-6 py-4 bg-white text-black rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] flex items-center gap-3 cursor-pointer transition-shadow hover:shadow-[0_12px_40px_rgba(255,255,255,0.3)] border-none outline-none"
             aria-label="Tirar dúvida"
         >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">

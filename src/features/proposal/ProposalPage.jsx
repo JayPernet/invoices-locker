@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { MainLayout } from '../../layouts/MainLayout';
 import { ProposalView } from './components/ProposalView';
@@ -6,10 +6,12 @@ import { UnlockVault } from '../unlock/components/UnlockVault';
 import { useProposal } from './hooks/useProposal';
 import { AnimatePresence } from 'framer-motion';
 import { FloatingAction } from './components/FloatingAction';
+import { Toast } from '../../components/ui/Toast';
 
 export const ProposalPage = () => {
     const { proposalId } = useParams();
     const { proposal, isLocked, isLoading, error, unlock } = useProposal(proposalId);
+    const [toast, setToast] = useState({ message: '', type: 'success', isVisible: false });
 
     // Foundation data for the 'Locked' preview
     const displayData = proposal || {
@@ -30,21 +32,26 @@ export const ProposalPage = () => {
     };
 
     const handleAccept = async () => {
-        // Webhook call will be handled here
         const webhookUrl = import.meta.env.VITE_WEBHOOK_PROPOSAL_ACCEPTED;
 
         try {
-            await fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'accept',
-                    proposal_id: proposal?.id,
-                    client_name: proposal?.client_name,
-                    project_title: proposal?.project_title,
-                    timestamp: new Date().toISOString()
-                })
-            });
+            // Send webhook if configured
+            if (webhookUrl) {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'accept',
+                        proposal_id: proposal?.id,
+                        client_name: proposal?.client_name,
+                        project_title: proposal?.project_title,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+            }
+
+            // Show success feedback
+            setToast({ message: 'Redirecionando para WhatsApp...', type: 'success', isVisible: true });
 
             // Open WhatsApp
             const phone = '5571993623891';
@@ -54,6 +61,7 @@ export const ProposalPage = () => {
             window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         } catch (error) {
             console.error('Webhook error:', error);
+            setToast({ message: 'Erro ao processar aceite', type: 'error', isVisible: true });
         }
     };
 
@@ -81,6 +89,14 @@ export const ProposalPage = () => {
 
             {/* Floating Action Button (only when unlocked) */}
             <FloatingAction active={!isLocked} proposal={proposal} />
+
+            {/* Toast Notification */}
+            <Toast
+                message={toast.message}
+                type={toast.type}
+                isVisible={toast.isVisible}
+                onClose={() => setToast({ ...toast, isVisible: false })}
+            />
         </MainLayout>
     );
 };

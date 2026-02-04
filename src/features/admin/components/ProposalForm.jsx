@@ -37,7 +37,10 @@ export const ProposalForm = ({ onSubmit, isLoading, initialData, onCancel }) => 
                 investment_currency: currency,
                 investment_details: initialData.content_json?.investment?.details || '',
                 expires_at: initialData.expires_at ? new Date(initialData.expires_at).toISOString().slice(0, 16) : '',
-                sections: initialData.content_json?.sections || [{ title: '', content: '', bullets: '' }],
+                sections: initialData.content_json?.sections?.map(s => ({
+                    ...s,
+                    bullets: Array.isArray(s.bullets) ? s.bullets.join('; ') : (s.bullets || '')
+                })) || [{ title: '', content: '', bullets: '' }],
                 budget_items: initialData.content_json?.investment?.items || []
             });
         }

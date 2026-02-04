@@ -37,12 +37,7 @@ export const InvestmentPanel = ({ investment, status, onAccept }) => (
                 <button
                     type="button"
                     onClick={onAccept}
-                    onTouchEnd={(e) => {
-                        e.preventDefault();
-                        onAccept();
-                    }}
-                    className="w-full py-4 bg-primary text-obsidian font-bold rounded uppercase tracking-wider hover:bg-white transition-all shadow-emerald-glow touch-manipulation"
-                    style={{ WebkitTapHighlightColor: 'transparent' }}
+                    className="w-full py-4 bg-primary text-obsidian font-bold rounded uppercase tracking-wider hover:bg-white transition-all shadow-emerald-glow active:scale-95"
                 >
                     Aceitar Proposta
                 </button>

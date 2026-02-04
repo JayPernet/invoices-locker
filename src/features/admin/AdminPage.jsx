@@ -9,6 +9,7 @@ import { PinModal } from './components/PinModal';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Button } from '../../components/ui/Button';
 import { Heading } from '../../components/ui/Typography';
+import { Toast } from '../../components/ui/Toast';
 
 export const AdminPage = () => {
     const {
@@ -31,6 +32,7 @@ export const AdminPage = () => {
     const [loginLoading, setLoginLoading] = useState(false);
     const [pinModal, setPinModal] = useState({ isOpen: false, proposal: null });
     const [deleteModal, setDeleteModal] = useState({ isOpen: false, proposal: null });
+    const [toast, setToast] = useState({ message: '', type: 'success', isVisible: false });
 
     // Load proposals on mount
     useEffect(() => {
@@ -59,12 +61,18 @@ export const AdminPage = () => {
             result = await updateProposal(proposalId, formData);
             if (result) {
                 await loadProposals();
+                setToast({ message: 'Proposta salva com sucesso!', type: 'success', isVisible: true });
                 setView('list');
                 setEditingProposal(null);
+            } else {
+                setToast({ message: 'Erro ao salvar proposta', type: 'error', isVisible: true });
             }
         } else {
             // Create new
             result = await createProposal(formData);
+            if (!result) {
+                setToast({ message: 'Erro ao criar proposta', type: 'error', isVisible: true });
+            }
         }
 
         setIsSubmitting(false);
@@ -210,6 +218,14 @@ export const AdminPage = () => {
                     onConfirm={confirmDelete}
                     onCancel={() => setDeleteModal({ isOpen: false, proposal: null })}
                     isLoading={isSubmitting}
+                />
+
+                {/* Toast Notification */}
+                <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    isVisible={toast.isVisible}
+                    onClose={() => setToast({ ...toast, isVisible: false })}
                 />
             </AdminLayout>
         </MainLayout>
