@@ -31,38 +31,16 @@ export const ProposalPage = () => {
         }
     };
 
-    const handleAccept = async () => {
-        const webhookUrl = import.meta.env.VITE_WEBHOOK_PROPOSAL_ACCEPTED;
+    const handleAccept = () => {
+        // Show feedback
+        setToast({ message: 'Abrindo WhatsApp...', type: 'success', isVisible: true });
 
-        try {
-            // Send webhook if configured
-            if (webhookUrl) {
-                await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'accept',
-                        proposal_id: proposal?.id,
-                        client_name: proposal?.client_name,
-                        project_title: proposal?.project_title,
-                        timestamp: new Date().toISOString()
-                    })
-                });
-            }
-
-            // Show success feedback
-            setToast({ message: 'Redirecionando para WhatsApp...', type: 'success', isVisible: true });
-
-            // Open WhatsApp
-            const phone = '5571993623891';
-            const message = encodeURIComponent(
-                `Olá! Quero *aceitar a proposta* para *${proposal?.client_name}*.`
-            );
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-        } catch (error) {
-            console.error('Webhook error:', error);
-            setToast({ message: 'Erro ao processar aceite', type: 'error', isVisible: true });
-        }
+        // Open WhatsApp with pre-filled message
+        const phone = '5571993623891';
+        const message = encodeURIComponent(
+            `Olá! Aceito a proposta para ${proposal?.client_name}`
+        );
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
     };
 
     return (

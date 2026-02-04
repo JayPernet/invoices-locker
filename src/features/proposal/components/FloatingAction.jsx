@@ -9,29 +9,11 @@ const variants = {
 export const FloatingAction = ({ active, proposal }) => {
     if (!active || !proposal) return null;
 
-    const handleQuestion = async () => {
-        const webhookUrl = import.meta.env.VITE_WEBHOOK_PROPOSAL_ACCEPTED;
-
-        try {
-            await fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'question',
-                    proposal_id: proposal.id,
-                    client_name: proposal.client_name,
-                    project_title: proposal.project_title,
-                    timestamp: new Date().toISOString()
-                })
-            });
-        } catch (error) {
-            console.error('Webhook error:', error);
-        }
-
+    const handleQuestion = () => {
         // Open WhatsApp
         const phone = '5571993623891';
         const message = encodeURIComponent(
-            `Olá! Tenho dúvidas sobre a proposta para *${proposal.client_name}*.`
+            `Olá! Tenho dúvidas sobre a proposta para ${proposal.client_name}.`
         );
         window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
     };
