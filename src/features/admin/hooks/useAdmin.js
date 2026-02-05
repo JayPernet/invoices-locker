@@ -7,10 +7,20 @@ export const useAdmin = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 2000);
+
         // Check active session
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
             setLoading(false);
+            clearTimeout(timer);
+        }).catch(err => {
+            console.error('Session check failed:', err);
+            setError('Falha ao conectar ao serviço de autenticação.');
+            setLoading(false);
+            clearTimeout(timer);
         });
 
         // Listen for auth changes
@@ -20,7 +30,10 @@ export const useAdmin = () => {
             setSession(session);
         });
 
-        return () => subscription.unsubscribe();
+        return () => {
+            clearTimeout(timer);
+            subscription.unsubscribe();
+        };
     }, []);
 
     const signIn = async (email, password) => {
